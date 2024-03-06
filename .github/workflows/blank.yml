@@ -40,5 +40,5 @@ jobs:
           event-type: my-event
           client-payload: |-
             {
-              "cluster-conf": "${{  steps.export-cluster-conf.outputs.CLUSTER_CONF }}"
+              "cluster-conf": '${{  steps.export-cluster-conf.outputs.CLUSTER_CONF }}'
             }
