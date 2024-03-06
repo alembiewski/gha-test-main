@@ -36,4 +36,4 @@ jobs:
           token: ${{ secrets.PAT }}
           repository: alembiewski/gha-test-dep
           event-type: my-event
-          client-payload: '{ "cluster_conf_base64": "${{  steps.export-cluster-conf.outputs.CLUSTER_CONF }}"}'
+          client-payload: '{ "cluster_conf_encoded": "${{  steps.export-cluster-conf.outputs.cluster_conf_encoded }}"}'
