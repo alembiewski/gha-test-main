@@ -30,11 +30,12 @@ jobs:
         id: export-cluster-conf
         run: |
           cluster_conf_encoded="$(cat cluster.conf | base64)"
-          echo "cluster_conf_encoded="$cluster_conf_encoded"" >> $GITHUB_OUTPUT
+          echo $cluster_conf_encoded
+          echo "cluster_conf_encoded="$cluster_conf_encoded"" >> $GITHUB_ENV
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.PAT }}
           repository: alembiewski/gha-test-dep
           event-type: my-event
-          client-payload: '{ "cluster_conf_encoded": "${{  steps.export-cluster-conf.outputs.cluster_conf_encoded }}"}'
+          client-payload: '{ "cluster_conf_encoded": "${{  env.cluster_conf_encoded }}"}'
