@@ -29,7 +29,7 @@ jobs:
       - name: Export cluster.conf
         id: export-cluster-conf
         run: |
-          echo "cluster_conf=$(cat ./gha-test-main/cluster.conf)" >> $GITHUB_OUTPUT
+          echo "cluster_conf=$(cat cluster.conf)" >> $GITHUB_OUTPUT
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
