@@ -29,7 +29,8 @@ jobs:
       - name: Export cluster.conf
         id: export-cluster-conf
         run: |
-          echo "cluster_conf_encoded=$(cat cluster.conf | base64)" >> $GITHUB_OUTPUT
+          cluster_conf_encoded="$(cat cluster.conf | base64)"
+          echo "cluster_conf_encoded=$cluster_conf_encoded" >> $GITHUB_OUTPUT
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
