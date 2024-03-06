@@ -30,7 +30,7 @@ jobs:
         id: export-cluster-conf
         run: |
           echo "CLUSTER_CONF<<EOF" >> $GITHUB_OUTPUT
-          echo '$(cat cluster.conf)' >> $GITHUB_OUTPUT
+          echo "$(cat cluster.conf)" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
