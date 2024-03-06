@@ -29,8 +29,9 @@ jobs:
       - name: Export cluster.conf
         id: export-cluster-conf
         run: |
-          echo "cluster_conf='$(cat cluster.conf)'" >> $GITHUB_OUTPUT
-
+          echo "CLUSTER_CONF<<EOF" >> $GITHUB_OUTPUT
+          echo $(cat cluster.conf) >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
@@ -39,5 +40,5 @@ jobs:
           event-type: my-event
           client-payload: |-
             {
-              "cluster-conf": '${{ steps.export-cluster-conf.outputs.cluster_conf }}'
+              "cluster-conf": '${{  steps.export-cluster-conf.outputs.CLUSTER_CONF }}'
             }
