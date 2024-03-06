@@ -21,7 +21,16 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Export cluster.conf
+        id: export-cluster-conf
+        run: |
+          echo "cluster_conf=$(cat ./gha-test-main/cluster.conf)" >> $GITHUB_OUTPUT
+
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
@@ -30,5 +39,5 @@ jobs:
           event-type: my-event
           client-payload: |-
             {
-              "message": "hello."
+              "cluster-conf": '${{ steps.export-cluster-conf.outputs.cluster_conf }}'
             }
