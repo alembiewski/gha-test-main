@@ -5,4 +5,9 @@ ifeq ($(CI),true)
 else
 	@echo "CI is false"
 endif
+	$(MAKE) another-target
+
+another-target:
+	@echo "Another target"
+	@echo "CI is $(CI)"
 
