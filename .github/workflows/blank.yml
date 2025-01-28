@@ -26,6 +26,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Override CI env
+        env:
+          CI: false
+        run: echo CI=$CI
       - name: Export cluster.conf
         id: export-cluster-conf
         run: |
