@@ -31,6 +31,15 @@ jobs:
         env:
           CI: false
         run: echo CI=$CI
+
+      - name: CI=false make test make test
+        run: CI=false make test
+      - name: make test CI=false
+        run: make test CI=false
+      - name: make test
+        env:
+          CI: false
+        run: make test
       - name: Export cluster.conf
         id: export-cluster-conf
         run: |
